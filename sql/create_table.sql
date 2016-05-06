@@ -13,7 +13,7 @@ CREATE TABLE `ijcai2016_taobao` (
   `Item_id` int(11) DEFAULT NULL,
   `Category_id` int(11) DEFAULT NULL,
   `Online_Action_id` int(11) DEFAULT NULL,
-  `Time_Stamp` varchar(45) DEFAULT NULL
+  `Time_Stamp` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ijcai2016_koubei_test` (
