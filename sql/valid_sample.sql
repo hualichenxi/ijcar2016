@@ -6,7 +6,7 @@
 
 use ijcai;
 create table valid_X_Positive as(
-select User_id,Merchant_id
+select User_id,Location_id,Merchant_id
 from ijcai2016_koubei_train where Time_Stamp<="2015-11-30 00:00:00" and Time_Stamp>="2015-11-01 00:00:00" 
 order by Time_Stamp desc
 );
