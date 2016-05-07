@@ -8,22 +8,43 @@
 -- where Time_Stamp<"2015-10-01 00:00:00" 
 -- );
 
+-- create table tmp1 as(
+-- select User_id, Merchant_id, count(*) as User_Merchant_count
+-- from train_before_10
+-- group by User_id, Merchant_id
+-- );
+-- create index tmp1_User_id_Merchant_id on tmp1(User_id,Merchant_id)
+-- 
+-- create table train_feature_buy_merchant(
+-- select A.User_id,A.Location_id,A.Merchant_id,IFNULL(B.User_Merchant_count,0) 
+-- as User_Merchant_count from tr_d_new as A left join tmp1 as B on 
+-- A.User_id=B.User_id and A.Merchant_id=B.Merchant_id
+-- );
+-- 
+-- drop tmp1;
+-- 
+-- create index idx_feature_buy_merchant on train_feature_buy_merchant(User_id,Location_id,Merchant_id);
+-- 
+-- 
+
 create table tmp1 as(
 select User_id, Merchant_id, count(*) as User_Merchant_count
-from train_before_10
+from train_before_11
 group by User_id, Merchant_id
 );
-create index tmp1_User_id_Merchant_id on tmp1(User_id,Merchant_id)
+create index tmp1_User_id_Merchant_id on tmp1(User_id,Merchant_id);
 
-create table train_feature_buy_merchant(
+create table valid_feature_buy_merchant(
 select A.User_id,A.Location_id,A.Merchant_id,IFNULL(B.User_Merchant_count,0) 
 as User_Merchant_count from tr_d_new as A left join tmp1 as B on 
 A.User_id=B.User_id and A.Merchant_id=B.Merchant_id
 );
 
-drop tmp1;
+drop table tmp1;
 
-create index idx_feature_buy_merchant on train_feature_buy_merchant(User_id,Location_id,Merchant_id);
+create index idx_feature_buy_merchant on valid_feature_buy_merchant(User_id,Location_id,Merchant_id);
+
+
 
 
 
