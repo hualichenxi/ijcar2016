@@ -10,18 +10,19 @@ except Exception, e:
     print e  
     sys.exit()  
 
+s1 = 'tr_d'
+s2 = 'train'
 
-
-features = [ 
-	['tr_d_new','User_id','Location_id','Merchant_id','Label'],
-	['train_feature_buy_location','User_Location_count'],
-	['train_feature_buy_merchant','User_Merchant_count'],
-	['train_feature_buy_merchant_location','User_Merchant_Location_count']
+tr_features = [ 
+	[s1+'_new','User_id','Location_id','Merchant_id','Label'],
+	[s2+'_feature_buy_location','User_Location_count'],
+	[s2+'_feature_buy_merchant','User_Merchant_count'],
+	[s2+'_feature_buy_merchant_location','User_Merchant_Location_count']
 ]
 
 
 arrs = []
-for feature in features:
+for feature in tr_features:
 	table = feature[0]
 	atts = ','.join(feature[1:])
 	sql = 'select ' + atts + ' from ' + table + ' order by User_id,Location_id,Merchant_id'
@@ -39,6 +40,6 @@ for arr in arrs[1:]:
 	tr_d = numpy.concatenate((tr_d,arr),axis=1)
 
 print 'save to file...'
-numpy.save('tr_d',tr_d)
+numpy.save(s1,tr_d)
 
 conn.close()
