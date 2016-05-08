@@ -6,7 +6,7 @@
 
 use ijcai;
 create table valid_X_Positive as(
-select User_id,Location_id,Merchant_id
+select User_id,Location_id,Merchant_id,1 as Label
 from ijcai2016_koubei_train where Time_Stamp<="2015-11-30 00:00:00" and Time_Stamp>="2015-11-01 00:00:00" 
 order by Time_Stamp desc
 );
@@ -24,7 +24,7 @@ create index idx_User_id_Merchant_id on valid_X_Positive(User_id,Merchant_id);
 
 create table valid_X_Negative as(
 select User_id,Location_id,Merchant_id,0 as Label from tmp
-where (User_id,Merchant_id) not in (
+where (User_id,Merchant_id) not in (	
 select User_id,Merchant_id from train_X_Positive
 )
 );
