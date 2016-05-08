@@ -10,8 +10,8 @@ except Exception, e:
     print e  
     sys.exit()  
 
-s1 = 'tr_d'
-s2 = 'train'
+s1 = 'va_d'
+s2 = 'valid'
 
 tr_features = [ 
 	[s1+'_new','User_id','Location_id','Merchant_id','Label'],
@@ -35,11 +35,11 @@ for feature in tr_features:
 	cur.close()
 
 print 'array merge...'
-tr_d = numpy.array(arrs[0])
+d = numpy.array(arrs[0])
 for arr in arrs[1:]:
-	tr_d = numpy.concatenate((tr_d,arr),axis=1)
+	d = numpy.concatenate((d,arr),axis=1)
 
 print 'save to file...'
-numpy.save(s1,tr_d)
+numpy.save(s1,d)
 
 conn.close()
