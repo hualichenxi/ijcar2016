@@ -30,7 +30,7 @@ create index idx_tmp1 on tmp1(User_id,Merchant_id,Location_id);
 
 create table if not exists valid_feature_buy_merchant_location(
 select A.User_id,A.Location_id,A.Merchant_id,IFNULL(B.count,0) as User_Merchant_Location_count
-from tr_d_new as A left join tmp1 as B on 
+from va_d_new as A left join tmp1 as B on 
 A.User_id=B.User_id and A.Merchant_id=B.Merchant_id and A.Location_id=B.Location_id
 );
 
