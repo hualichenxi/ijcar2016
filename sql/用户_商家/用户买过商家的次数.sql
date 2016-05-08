@@ -36,7 +36,7 @@ create index tmp1_User_id_Merchant_id on tmp1(User_id,Merchant_id);
 
 create table valid_feature_buy_merchant(
 select A.User_id,A.Location_id,A.Merchant_id,IFNULL(B.User_Merchant_count,0) 
-as User_Merchant_count from tr_d_new as A left join tmp1 as B on 
+as User_Merchant_count from va_d_new as A left join tmp1 as B on 
 A.User_id=B.User_id and A.Merchant_id=B.Merchant_id
 );
 
