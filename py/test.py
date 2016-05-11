@@ -16,16 +16,20 @@ endtime1 = datetime.datetime.now()
 print str((endtime1 - starttime).seconds) + ' seconds used.\n'
 
 print 'write results...'
-i_true = numpy.where(te_d[:,3]==1)
-r_true = te_r[i_true]
 
 m_r = {}
-for item in r_true:
+for item in te_r:
 	key = str(item[0])+','+str(item[1])
 	if m_r.has_key(key):
-		m_r[key].append(item[2])
+		arr = m_r[key]
+		if item[3] == 1 and item[2] not in arr:
+			arr.append(item[2])
+			m_r[key] = arr
 	else:
-		m_r[key] = [item[2]]
+		if item[3] == 1:
+			m_r[key] = [item[2]]
+		else:
+			m_r[key] = []
 
 f = open('results.csv','w')
 
@@ -34,3 +38,6 @@ for key in keys:
 	line = key + ',' + ':'.join(str(i) for i in m_r[key])	
 	f.write(line + '\n')
 f.close()
+
+endtime2 = datetime.datetime.now()
+print str((endtime2 - starttime1).seconds) + ' seconds used.\n'
