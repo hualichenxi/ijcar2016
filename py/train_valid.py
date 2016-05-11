@@ -2,6 +2,7 @@
 import numpy
 import datetime
 from sklearn import linear_model
+from sklearn.externals import joblib
 
 starttime = datetime.datetime.now()
 print 'train and predict ...\n'
@@ -10,6 +11,8 @@ va_d = numpy.load('va_d.npy')
 
 clf = linear_model.SGDClassifier()
 clf.fit(tr_d[:,4:], tr_d[:,3])
+
+joblib.dump(clf, "model.m")
 
 p = clf.predict(va_d[:,4:])
 

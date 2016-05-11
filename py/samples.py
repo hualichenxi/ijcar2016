@@ -10,17 +10,21 @@ except Exception, e:
     print e  
     sys.exit()  
 
-s1 = 'va_d'
-s2 = 'valid'
+s1 = 'te_d'
+s2 = 'test'
 
-tr_features = [ 
-	[s1+'_new','User_id','Location_id','Merchant_id','Label'],
+f0 = [s1+'_new','User_id','Location_id','Merchant_id']
+
+if s1 != 'te_d':
+	f0.append('Label')
+
+tr_features = [f0, 
 	[s2+'_feature_buy_location','User_Location_count'],
 	[s2+'_feature_buy_merchant','User_Merchant_count'],
 	[s2+'_feature_buy_merchant_location','User_Merchant_Location_count']
 ]
 
-
+print 'read data...'
 arrs = []
 for feature in tr_features:
 	table = feature[0]
