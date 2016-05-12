@@ -22,22 +22,47 @@
 -- select * from train_feature_location_user_count order by Location_User_count desc limit 5;
 
 -- drop table tmp1;
+
+
+-- -------------------------valid----------------------------
+-- create table tmp1 as(
+-- select Location_id, count(distinct user_id) as count
+-- from train_before_11
+-- group by Location_id
+-- );
+-- create index tmp1_Location on tmp1(Location_id);
+-- 
+-- create table valid_feature_location_user_count(
+-- select A.User_id,A.Location_id,A.Merchant_id,IFNULL(B.count,0) as Location_User_count
+-- from va_d_new as A left join tmp1 as B on 
+-- A.Location_id=B.Location_id
+-- );
+-- 
+-- create index idx_valid_Location_User on valid_feature_location_user_count(User_id,Merchant_id,Location_id);
+-- 
+-- select * from tmp1 order by count desc limit 5;
+-- select * from valid_feature_location_user_count order by Location_User_count desc limit 5;
+-- 
+-- drop table tmp1;
+
+
+-- -------------------------test----------------------------
 create table tmp1 as(
 select Location_id, count(distinct user_id) as count
-from train_before_11
+from ijcai2016_koubei_train
 group by Location_id
 );
 create index tmp1_Location on tmp1(Location_id);
 
-create table valid_feature_location_user_count(
+create table test_feature_location_user_count(
 select A.User_id,A.Location_id,A.Merchant_id,IFNULL(B.count,0) as Location_User_count
-from va_d_new as A left join tmp1 as B on 
+from te_d_new as A left join tmp1 as B on 
 A.Location_id=B.Location_id
 );
 
-create index idx_valid_Location_User on valid_feature_location_user_count(User_id,Merchant_id,Location_id);
+create index idx_test_Location_User on test_feature_location_user_count(User_id,Merchant_id,Location_id);
 
 select * from tmp1 order by count desc limit 5;
-select * from valid_feature_location_user_count order by Location_User_count desc limit 5;
+select * from test_feature_location_user_count order by Location_User_count desc limit 5;
 
 drop table tmp1;
