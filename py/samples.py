@@ -21,7 +21,18 @@ if s1 != 'te_d':
 tr_features = [f0, 
 	[s2+'_feature_buy_location','User_Location_count'],
 	[s2+'_feature_buy_merchant','User_Merchant_count'],
-	[s2+'_feature_buy_merchant_location','User_Merchant_Location_count']
+	[s2+'_feature_buy_merchant_location','User_Merchant_Location_count'],
+	[s2+'_feature_location_buy_count','Location_buy_count'],
+	[s2+'_feature_location_merchant_count','Location_Merchant_count'],
+	[s2+'_feature_location_user_count','Location_User_count'],
+	[s2+'_feature_merchant_buy_count','Merchant_buy_count'],
+	[s2+'_feature_merchant_location_buy_count','Merchant_Location_count'],
+	[s2+'_feature_merchant_location_count','Merchant_Location_count'],
+	[s2+'_feature_merchant_location_user_count','Merchant_Location_User_count'],
+	[s2+'_feature_merchant_user_count','Merchant_User_count'],
+	[s2+'_feature_user_buy_count','User_buy_count'],
+	[s2+'_feature_user_location_count','User_Location_count'],
+	[s2+'_feature_user_merchant_count','User_Merchant_count'],
 ]
 
 print 'read data...'

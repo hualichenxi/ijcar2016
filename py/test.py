@@ -40,4 +40,4 @@ for key in keys:
 f.close()
 
 endtime2 = datetime.datetime.now()
-print str((endtime2 - starttime1).seconds) + ' seconds used.\n'
+print str((endtime2 - endtime1).seconds) + ' seconds used.\n'
