@@ -3,13 +3,16 @@ import numpy
 import datetime
 from sklearn import linear_model
 from sklearn.externals import joblib
+from sklearn.ensemble import RandomForestClassifier
 
 starttime = datetime.datetime.now()
 print 'train and predict ...\n'
 tr_d = numpy.load('tr_d.npy')
 va_d = numpy.load('va_d.npy')
 
-clf = linear_model.SGDClassifier()
+#clf = linear_model.SGDClassifier()
+clf = RandomForestClassifier(n_estimators=10)
+
 clf.fit(tr_d[:,4:], tr_d[:,3])
 
 joblib.dump(clf, "model.m")
@@ -18,14 +21,6 @@ p = clf.predict(va_d[:,4:])
 
 va_r = numpy.concatenate((va_d,p.reshape(p.shape[0],1)),axis=1)
 
-#tmp0 = va_r[numpy.where(va_r[:,-1]==1)]
-#tmp = va_r[numpy.where(va_r[:,3]==1)]
-#tmp2 = tmp[numpy.where(tmp[:,-1]==1)]
-#print 'precision: ' + str(float(tmp2.shape[0])/float(tmp0.shape[0]))
-#print 'recall: ' + str(float(tmp2.shape[0])/float(tmp.shape[0]))
-
-#for item in va_r:
-#	print str(item[3]) + ' ' + str(item[-1])
 
 endtime1 = datetime.datetime.now()
 print str((endtime1 - starttime).seconds) + ' seconds used.\n'
