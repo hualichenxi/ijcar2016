@@ -1,7 +1,6 @@
 #! /usr/bin/python
 import numpy
 import datetime
-from sklearn import linear_model
 from sklearn.externals import joblib
 
 starttime = datetime.datetime.now()

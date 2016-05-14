@@ -3,12 +3,15 @@ import numpy
 import datetime
 from sklearn import linear_model
 from sklearn.externals import joblib
+from sklearn.ensemble import RandomForestClassifier
 
 starttime = datetime.datetime.now()
 print 'train ...\n'
-tr_d = numpy.load('va_d.npy')
+tr_d = numpy.load('tr_d.npy')
 
-clf = linear_model.SGDClassifier()
+#clf = linear_model.SGDClassifier()
+clf = RandomForestClassifier(n_estimators=10)
+
 clf.fit(tr_d[:,4:], tr_d[:,3])
 
 joblib.dump(clf, "model.m")
