@@ -10,11 +10,11 @@ print 'train ...\n'
 tr_d = numpy.load('tr_d.npy')
 
 #clf = linear_model.SGDClassifier()
-clf = RandomForestClassifier(n_estimators=10)
+clf = RandomForestClassifier(n_estimators=50)
 
 clf.fit(tr_d[:,4:], tr_d[:,3])
 
-joblib.dump(clf, "model.m")
+joblib.dump(clf, "model/model.m")
 
 
 endtime1 = datetime.datetime.now()

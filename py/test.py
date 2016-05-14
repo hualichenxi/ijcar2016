@@ -7,7 +7,7 @@ starttime = datetime.datetime.now()
 
 print 'testing ...\n'
 te_d = numpy.load('te_d.npy')
-clf = joblib.load("model.m")
+clf = joblib.load("model/model.m")
 p = clf.predict(te_d[:,3:])
 te_r = numpy.concatenate((te_d[:,0:3],p.reshape(p.shape[0],1)),axis=1)
 

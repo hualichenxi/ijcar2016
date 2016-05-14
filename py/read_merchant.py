@@ -3,9 +3,9 @@
 import MySQLdb
 import numpy
 import sys
-
+localhost = '10.214.0.95'
 try:    
-	conn = MySQLdb.connect(host='localhost',port=3306, user='root', passwd='123456', db='ijcai')  
+	conn = MySQLdb.connect(host=localhost, port=3306, user='bc', passwd='123456', db='ijcai')  
 except Exception, e:  
     print e  
     sys.exit()  
