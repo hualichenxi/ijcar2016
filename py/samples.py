@@ -8,7 +8,14 @@ try:
 	conn = MySQLdb.connect(host='localhost',port=3306, user='root', passwd='123456', db='ijcai')  
 except Exception, e:  
     print e  
-    sys.exit()  
+    sys.exit()
+
+# s1='tr_d'
+# s2='train'
+
+# s1='va_d'
+# s2='valid'
+
 
 s1 = 'te_d'
 s2 = 'test'
