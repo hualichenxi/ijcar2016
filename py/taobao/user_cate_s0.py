@@ -12,8 +12,11 @@ except Exception, e:
 
 cate_n = 72
 
+s = 'train'
+ty = 'click'
+sql = 'select A.User_id,B.Category_id,B.total_count,A.Label from tr_d_new A left join train_user_cate_click_3days B on A.User_id = B.User_id order by User_id'
+
 print 'get data ...'
-sql = 'select A.User_id,A.Category_id,A.total_count,B.Label from train_user_cate_click_3days A inner join tr_d_new B on A.User_id = B.User_id'
 cur = conn.cursor()
 cur.execute(sql)
 res = cur.fetchall()
@@ -32,7 +35,8 @@ for item in arr:
 		
 	if item[3] == 1:
 		a[1] = 1
-	a[Category_id-1+2] = a[Category_id-1+2] + item[2] 
+	if item[1] != None:
+		a[item[1]+1] = a[item[1]+1] + item[2] 
 	u_cate[user_id] = a
 
 user_ids = u_cate.keys()
@@ -44,4 +48,4 @@ for u in user_ids[1:]:
 	d = numpy.concatenate((d,a.reshape(1,cate_n+2)),axis=0)
 
 print 'save data...'
-numpy.save('user_label_cate_click',d)
+numpy.save(s+'_user_cate_'+ty,d)
