@@ -9,18 +9,19 @@ dim_n = 2
 tr_uc = numpy.load('train_user_cate_'+ty)
 te_uc = numpy.load('test_user_cate_'+ty)
 
+#LDA的训练
 lda = LDA(n_components = dim_n)
 lda.fit(tr_uc[:,2:], tr_uc[:,1])
 
+#用训练好的模型分别转化训练和测试数据的维度，降维
 tr_x = lda.transform(tr_uc[:,2:])
 te_x = lda.transform(te_uc[:,1:])
-
 tr_uc_d = numpy.concatenate((tr_uc[:,0],tr_x),axis=1)
 te_uc_d = numpy.concatenate((te_uc[:,0],te_x),axis=1)
 
+#把得到的数据展开，和我们训练数据、测试数据对齐，方便后面train.py/test.py直接合并
 tr_d = numpy.load('../samples/tr_d0.npy')
 te_d = numpy.load('../samples/te_d0.npy')
-
 tr_uc_d2 = array_merge(tr_uc_d,tr_d)
 te_uc_d2 = array_merge(te_uc_d,tr_d)
 
