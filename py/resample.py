@@ -3,7 +3,10 @@ import numpy
 
 s1 = 'tr_d'
 
-d = numpy.load(s1+'.npy')
+df0 = numpy.load('samples/'+s1+'0.npy')
+df1 = numpy.load('samples/'+s1+'1.npy')
+
+d = numpy.concatenate((df0,df1),axis=1)
 
 d0 = d[numpy.where(d[:,3]==0)]
 numpy.random.shuffle(d0)
@@ -20,5 +23,5 @@ d_s = numpy.concatenate((d0_s,d1_s),axis=0)
 numpy.random.shuffle(d_s)
 
 print 'save file...'
-numpy.save(s1+'_s',d_s)
+numpy.save('samples/'+s1+'_s',d_s)
 

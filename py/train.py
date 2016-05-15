@@ -7,7 +7,7 @@ from sklearn.ensemble import RandomForestClassifier
 
 starttime = datetime.datetime.now()
 print 'train ...\n'
-tr_d = numpy.load('tr_d_s.npy')
+tr_d = numpy.load('samples/tr_d_s.npy')
 
 #clf = linear_model.SGDClassifier()
 clf = RandomForestClassifier(n_estimators=50)

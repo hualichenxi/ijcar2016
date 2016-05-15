@@ -6,7 +6,10 @@ from sklearn.externals import joblib
 starttime = datetime.datetime.now()
 
 print 'testing ...\n'
-te_d = numpy.load('te_d.npy')
+te_f0 = numpy.load('samples/te_d0.npy')
+te_f1 = numpy.load('samples/te_d1.npy')
+te_d = numpy.concatenate((te_f0,te_f1),axis=1)
+
 clf = joblib.load("model/model.m")
 p = clf.predict(te_d[:,3:])
 te_r = numpy.concatenate((te_d[:,0:3],p.reshape(p.shape[0],1)),axis=1)
