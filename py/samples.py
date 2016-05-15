@@ -7,7 +7,7 @@ import sys
 
 localhost = '10.214.0.95'
 try:    
-	conn = MySQLdb.connect(host=localhost,port=3306, user='root', passwd='123456', db='ijcai')  
+	conn = MySQLdb.connect(host='localhost',port=3306, user='root', passwd='123456', db='ijcai')  
 except Exception, e:  
     print e  
     sys.exit()
@@ -42,6 +42,7 @@ tr_features = [f0,
 	[s2+'_feature_user_buy_count','User_buy_count'],
 	[s2+'_feature_user_location_count','User_Location_count'],
 	[s2+'_feature_user_merchant_count','User_Merchant_count'],
+	[s2+'_feature_taobao_user_click','Taobao_User_Click_count','Taobao_User_Buy_count'],
 ]
 
 print 'read data...'
